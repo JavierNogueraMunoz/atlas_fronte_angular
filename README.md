@@ -4,6 +4,6 @@ El fronted se ha realizado con el framework Angular. El formulario que se presen
 
 <h1>Commandos</h1>
 
-<strong>npm run start</strong> Levantaremos nuestro fronted en el puerto 4200.
+<strong>npm run start</strong> Levantaremos nuestro fronted en el puerto 4200. \n
 <strong>npm run test</strong> Realizaremos los test unitarios a nuestros fronted.
 
