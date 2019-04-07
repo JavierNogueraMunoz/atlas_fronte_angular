@@ -1,0 +1,131 @@
+<div class="" fxLayout="row" fxLayoutWrap="wrap">
+    <mat-card fxFlex="100" fxLayoutGap="25px">
+        <mat-card-title>
+            Usuarios
+        </mat-card-title>
+        <mat-card-content class="mt-1">
+            <form [formGroup]="rForm" (ngSubmit)="saveUser()" fxLayout fxLayout.xs="column" fxLayoutWrap
+                fxLayoutGap="25px">
+                <div fxFlex="100" fxLayout fxLayout.xs="column" fxLayoutWrap fxLayoutGap="25px"  >
+                    <div fxFlex="calc(33% - 25px)" fxLayout="column" class="margin">
+                        <mat-form-field fxFlex>
+                            <input matInput formControlName="dni" id="dni" name="dni" placeholder="Dni"
+                                (blur)="getUser('dni')" value="{{user.dni}}">
+                        </mat-form-field>
+                        <small fxFlex *ngIf="hasError('dni', ['required', 'pattern'])" class="form-error-msg">
+                            El Dni no cumple los requesitos
+                        </small>
+                    </div>
+                    <div fxFlex="calc(33% - 25px)" fxLayout="column" class="margin">
+                        <mat-form-field fxFlex>
+                            <input matInput formControlName="email" id="email" name="email" placeholder="Email"
+                                (blur)="getUser('email')" value="{{user.email}}">
+                        </mat-form-field>
+                        <small fxFlex *ngIf="hasError('email', ['required', 'pattern'])" class="form-error-msg">
+                            El email no cumple los requisitos
+                        </small>
+                    </div>
+                    <div fxFlex="calc(33% - 25px)" fxLayout="column" class="margin">
+                        <mat-form-field fxFlex>
+                            <input matInput formControlName="name" id="name" name="name" placeholder="Nombre"
+                                value="{{user.name}}">
+                        </mat-form-field>
+                        <small fxFlex *ngIf="hasError('name', ['required', 'pattern'])" class="form-error-msg">
+                            El nombre no cumple los requisitos
+                        </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxLayout fxLayout.xs="column" fxLayoutWrap fxLayoutGap="25px"  >
+                    <div fxFlex="calc(50% - 25px)" fxLayout="column" class="margin">
+                        <mat-select placeholder="Captacion" formControlName="captation" value="{{user.captation}}">
+                            <mat-option *ngFor="let captation of captations" [value]="captation">
+                                {{captation }}
+                            </mat-option>
+                        </mat-select>
+                        <small fxFlex *ngIf="hasError('captation', ['required', 'pattern'])" class="form-error-msg">
+                            Error en la captacion
+                        </small>
+                    </div>
+                    <div fxFlex="calc(50% - 25px)" fxLayout="column" class="margin">
+                        <mat-select placeholder="Newsletters" formControlName="newsletter" value="{{user.newsletter}}">
+                            <mat-option *ngFor="let newsletter of newsletters" [value]="newsletter" ngDefaultControl>
+                                {{newsletter }}
+                            </mat-option>
+                        </mat-select>
+                        <small fxFlex *ngIf="hasError('newsletter', ['required', 'pattern'])" class="form-error-msg">
+                            Error en el newsletter
+                        </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxLayout fxLayout.xs="column" fxLayoutWrap fxLayoutGap="25px"  >
+                    <div fxFlex="calc(50% - 25px)" fxLayout="column" class="margin">
+                        <mat-form-field fxFlex>
+                            <input matInput formControlName="address" id="address" name="address"
+                                placeholder="Direccion" value="{{user.address}}">
+                        </mat-form-field>
+                        <small fxFlex *ngIf="hasError('address', ['required', 'pattern'])" class="form-error-msg">
+                            La dirección no cumple los requesitos
+                        </small>
+                    </div>
+                    <div fxFlex="calc(50% - 25px)" fxLayout="column" class="margin">
+                        <mat-form-field fxFlex>
+                            <input matInput formControlName="postal_code" id="postal_code" name="postal_code"
+                                placeholder="Codigo Postal" value="{{user.postal_code}}">
+                        </mat-form-field>
+                        <small fxFlex *ngIf="hasError('postal_code', ['required', 'pattern'])" class="form-error-msg">
+                            El Codigo Postal no cumple los requisitos
+                        </small>
+                    </div>
+
+                </div>
+                <div fxFlex="100" fxLayout fxLayout.xs="column" fxLayoutWrap fxLayoutGap="25px"  >
+                    <div fxFlex="calc(33% - 25px)" fxLayout="column" class="margin">
+                        <mat-form-field fxFlex>
+                            <input matInput formControlName="city" id="city" name="city" placeholder="Ciudad"
+                                value="{{user.city}}">
+                        </mat-form-field>
+                        <small fxFlex *ngIf="hasError('city', ['required', 'pattern'])" class="form-error-msg">
+                            La Ciudad no cumple los requesitos
+                        </small>
+                    </div>
+                    <div fxFlex="calc(33% - 25px)" fxLayout="column" class="margin">
+                        <mat-form-field fxFlex>
+                            <input matInput formControlName="region" id="region" name="region" placeholder="Region"
+                                value="{{user.region}}">
+                        </mat-form-field>
+                        <small fxFlex *ngIf="hasError('region', ['required', 'pattern'])" class="form-error-msg">
+                            La region no cumple los requisitos
+                        </small>
+                    </div>
+                    <div fxFlex="calc(33% - 25px)" fxLayout="column" class="margin">
+                        <mat-form-field fxFlex>
+                            <input matInput formControlName="country" id="country" name="country" placeholder="Pais"
+                                value="{{user.country}}">
+                        </mat-form-field>
+                        <small fxFlex *ngIf="hasError('country', ['required', 'pattern'])" class="form-error-msg">
+                            El pais no cumple los requisitos
+                        </small>
+                    </div>
+                </div>
+                <div fxFlex.xs="100" fxFlex="calc(100%-25px)" fxLayout="column" fxLayoutWrap>
+                    <div fxFlex="calc(100% - 25px)" fxLayout="column" style="margin-bottom: 25px">
+                        <label>Observaciones</label>
+                        <textarea formControlName="observation" id="observation"
+                            name="observation">{{user.observation}}</textarea>
+
+                        <small fxFlex *ngIf="hasError('observation', ['required', 'pattern'])" class="form-error-msg">
+                            El observation no cumple los requesitos
+                        </small>
+                    </div>
+                </div>
+
+                <div fxFlex.xs="100" fxFlex="calc(100%)" fxLayout="row" fxLayoutAlign="end" class="form-button">
+                    <button [color]="'primary'" mat-raised-button [disabled]="rForm.invalid">Save
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+
+    </mat-card>
+
+</div>
